@@ -61,7 +61,7 @@ public class CustomViewTest extends View {
         textPaint.setTextAlign(Paint.Align.LEFT);
         textPaint.setTextSize(Tool.convertSpToPx(getContext(), 30));
         textPaint.setAntiAlias(true);
-        gestureDetector = new GestureDetector(context, new GestureListener());
+        gestureDetector = new GestureDetector(context, new MyGestureListener());
     }
 
     @Override
@@ -77,7 +77,7 @@ public class CustomViewTest extends View {
         return gestureDetector.onTouchEvent(e);
     }
 
-    private class GestureListener extends GestureDetector.SimpleOnGestureListener {
+    private class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
 
         @Override
         public boolean onDown(MotionEvent e) {
@@ -101,17 +101,17 @@ public class CustomViewTest extends View {
         }
 
         @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            LogI("onFling 11: (" + e1.getX() + ", " + e1.getY() + ")");
-            LogI("onFling 22: (" + e2.getX() + ", " + e2.getY() + ")");
-            return super.onFling(e1, e2, velocityX, velocityY);
-        }
-
-        @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             LogI("onScroll 11: (" + e1.getX() + ", " + e1.getY() + ")");
             LogI("onScroll 22: (" + e2.getX() + ", " + e2.getY() + ")");
             return super.onScroll(e1, e2, distanceX, distanceY);
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            LogI("onFling 11: (" + e1.getX() + ", " + e1.getY() + ")");
+            LogI("onFling 22: (" + e2.getX() + ", " + e2.getY() + ")");
+            return super.onFling(e1, e2, velocityX, velocityY);
         }
     }
 }
